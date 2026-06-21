@@ -1,0 +1,205 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}پروفایل - بلاگ من{% endblock %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <!-- هدر پروفایل -->
+        <div class="profile-card mb-4">
+            <div class="d-flex align-items-center flex-wrap">
+                {% if user.profile.image %}
+                    <img src="{{ user.profile.image.url }}" alt="avatar" class="profile-avatar me-4">
+                {% else %}
+                    <div class="profile-avatar me-4 d-flex align-items-center justify-content-center bg-primary text-white" 
+                         style="font-size:3rem;">
+                        <i class="bi bi-person"></i>
+                    </div>
+                {% endif %}
+                <div class="flex-grow-1">
+                    <h3 class="mb-1">
+                        {% if user.profile.first_name %}
+                            {{ user.profile.first_name }} {{ user.profile.last_name }}
+                        {% else %}
+                            کاربر عزیز
+                        {% endif %}
+                    </h3>
+                    <p class="text-muted mb-2">
+                        <i class="bi bi-envelope"></i> {{ user.email }}
+                    </p>
+                    {% if user.profile.description %}
+                        <p class="mb-0">{{ user.profile.description }}</p>
+                    {% endif %}
+                    {% if user.is_staff %}
+                        <span class="badge bg-primary mt-2">
+                            <i class="bi bi-shield-check"></i> مدیر سایت
+                        </span>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-lg-8">
+                
+                {% if user.is_staff %}
+                <div class="profile-card mb-4">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h4 class="mb-0"><i class="bi bi-newspaper"></i> پست‌های من</h4>
+                        <a href="{% url 'blog:create_post' %}" class="btn btn-primary-custom">
+                            <i class="bi bi-plus"></i> پست جدید
+                        </a>
+                    </div>
+
+                    <div class="list-group">
+                        {% for post in posts %}
+                        <div class="list-group-item border-0 border-bottom">
+                            <div class="d-flex justify-content-between align-items-center flex-wrap">
+                                <div class="mb-2">
+                                    <a href="{% url 'blog:post_detail' post.id %}" class="fw-bold text-dark">
+                                        {{ post.title }}
+                                    </a>
+                                    <div class="small text-muted mt-1">
+                                        <i class="bi bi-calendar"></i> {{ post.created_date|date:"Y/m/d" }}
+                                        <span class="mx-2">•</span>
+                                        <i class="bi bi-eye"></i> {{ post.views }} بازدید
+                                        <span class="mx-2">•</span>
+                                        <i class="bi bi-heart"></i> {{ post.likes.count }} لایک
+                                        <span class="mx-2">•</span>
+                                        <i class="bi bi-chat"></i> {{ post.comments.count }} نظر
+                                    </div>
+                                </div>
+                                <div class="d-flex gap-2">
+                                    <a href="{% url 'blog:post_update' post.id %}" class="btn btn-sm btn-warning">
+                                        <i class="bi bi-pencil"></i>
+                                    </a>
+                                    <a href="{% url 'blog:post_delete' post.id %}" class="btn btn-sm btn-danger">
+                                        <i class="bi bi-trash"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        {% empty %}
+                        <div class="text-center py-4 text-muted">
+                            <i class="bi bi-inbox fa-2x mb-2"></i>
+                            <p>هنوز پستی ایجاد نکرده‌اید.</p>
+                            <a href="{% url 'blog:create_post' %}" class="btn btn-primary-custom">
+                                اولین پست رو بنویس!
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% else %}
+
+                <div class="profile-card mb-4">
+                    <div class="text-center py-4">
+                        <i class="bi bi-info-circle fa-3x text-primary mb-3"></i>
+                        <h5>خوش آمدید!</h5>
+                        <p class="text-muted">
+                            شما می‌توانید پست‌های منتشر شده را مشاهده کنید، 
+                            لایک کنید و نظر بدهید.
+                        </p>
+                        <a href="{% url 'blog:blog_home' %}" class="btn btn-primary-custom">
+                            <i class="bi bi-journal-text"></i> مشاهده پست‌ها
+                        </a>
+                    </div>
+                </div>
+
+                <div class="profile-card mb-4">
+                    <h4 class="mb-4"><i class="bi bi-activity"></i> فعالیت‌های من</h4>
+                    
+                    {% if user_comments %}
+                        <h6 class="text-muted mb-3">نظرات شما:</h6>
+                        <div class="list-group mb-4">
+                            {% for comment in user_comments %}
+                            <a href="{% url 'blog:post_detail' comment.post.id %}" 
+                               class="list-group-item list-group-item-action border-0 border-bottom">
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <strong>{{ comment.post.title|truncatechars:50 }}</strong>
+                                        <p class="mb-0 small text-muted">{{ comment.content|truncatechars:100 }}</p>
+                                    </div>
+                                    <small class="text-muted">{{ comment.created_date|date:"Y/m/d" }}</small>
+                                </div>
+                            </a>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
+                    {% if user_likes %}
+                        <h6 class="text-muted mb-3">پست‌های لایک شده:</h6>
+                        <div class="list-group">
+                            {% for like in user_likes %}
+                            <a href="{% url 'blog:post_detail' like.post.id %}" 
+                               class="list-group-item list-group-item-action border-0 border-bottom">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <strong>{{ like.post.title|truncatechars:60 }}</strong>
+                                    <i class="bi bi-heart-fill text-danger"></i>
+                                </div>
+                            </a>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
+                    {% if not user_comments and not user_likes %}
+                        <div class="text-center py-3 text-muted">
+                            <p>هنوز فعالیتی نداشته‌اید.</p>
+                        </div>
+                    {% endif %}
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="col-lg-4">
+        
+                <div class="profile-card mb-4">
+                    <h5 class="mb-3"><i class="bi bi-person-gear"></i> ویرایش پروفایل</h5>
+                    <form method="post" action="{% url 'accounts:profile_update' %}" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {% for field in form %}
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">{{ field.label }}</label>
+                                {{ field }}
+                            </div>
+                        {% endfor %}
+                        <button type="submit" class="btn btn-primary-custom w-100">
+                            <i class="bi bi-save"></i> ذخیره
+                        </button>
+                    </form>
+                </div>
+
+                <div class="profile-card">
+                    <h5 class="mb-3"><i class="bi bi-gear"></i> تنظیمات</h5>
+                    <div class="list-group list-group-flush">
+                        <a href="{% url 'accounts:change_password' %}" class="list-group-item list-group-item-action">
+                            <i class="bi bi-key"></i> تغییر رمز عبور
+                        </a>
+                        <a href="{% url 'accounts:logout' %}" class="list-group-item list-group-item-action text-danger">
+                            <i class="bi bi-box-arrow-right"></i> خروج از حساب
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .profile-card input, .profile-card textarea {
+        width: 100%;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        padding: 8px 12px;
+    }
+    .profile-card textarea { min-height: 80px; }
+    body.dark-mode .profile-card input,
+    body.dark-mode .profile-card textarea {
+        background: #3d3d3d;
+        color: #e5e7eb;
+        border-color: #4d4d4d;
+    }
+</style>
+{% endblock %}

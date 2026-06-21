@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %}ویرایش پروفایل - بلاگ من{% endblock %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="profile-card">
+                    <h3 class="mb-4"><i class="bi bi-user-edit"></i> ویرایش پروفایل</h3>
+
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">نام</label>
+                            {{ form.first_name }}
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">نام خانوادگی</label>
+                            {{ form.last_name }}
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">عکس پروفایل</label>
+                            {{ form.image }}
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label fw-bold">درباره من</label>
+                            {{ form.description }}
+                        </div>
+
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn btn-primary-custom">
+                                <i class="bi bi-save"></i> ذخیره تغییرات
+                            </button>
+                            <a href="{% url 'accounts:profile' %}" class="btn btn-secondary">انصراف</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    form input, form textarea {
+        width: 100%;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        padding: 10px 15px;
+    }
+    form textarea { min-height: 100px; }
+</style>
+{% endblock %}

@@ -1,0 +1,327 @@
+/* ===== فونت و تنظیمات کلی ===== */
+@import url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css');
+
+* {
+    font-family: 'Vazirmatn', sans-serif !important;
+}
+
+body {
+    background-color: #f8f9fa;
+    color: #333;
+    direction: rtl;
+    text-align: right;
+}
+
+a {
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+/* ===== Navbar ===== */
+.navbar-custom {
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    padding: 15px 0;
+}
+
+.navbar-custom .navbar-brand {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: #2563eb;
+}
+
+.navbar-custom .nav-link {
+    color: #555;
+    font-weight: 500;
+    margin: 0 8px;
+    padding: 8px 15px !important;
+    border-radius: 6px;
+}
+
+.navbar-custom .nav-link:hover,
+.navbar-custom .nav-link.active {
+    color: #2563eb;
+    background-color: #eff6ff;
+}
+
+/* ===== Hero Section ===== */
+.hero-section {
+    background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+    color: white;
+    padding: 100px 0 80px;
+    border-radius: 0 0 30px 30px;
+}
+
+.hero-section h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.hero-section p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+/* ===== کارت‌های پست ===== */
+.post-card {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.06);
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.post-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+}
+
+.post-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.post-card .card-body {
+    padding: 20px;
+}
+
+.post-card .post-meta {
+    font-size: 0.85rem;
+    color: #888;
+    margin-bottom: 10px;
+}
+
+.post-card .post-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #222;
+    margin-bottom: 10px;
+}
+
+.post-card .post-excerpt {
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+/* ===== Badge ها ===== */
+.badge-category {
+    background-color: #dbeafe;
+    color: #1e40af;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.badge-tag {
+    background-color: #f3f4f6;
+    color: #555;
+    padding: 4px 10px;
+    border-radius: 15px;
+    font-size: 0.75rem;
+    margin-left: 5px;
+    display: inline-block;
+}
+
+/* ===== دکمه‌ها ===== */
+.btn-primary-custom {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.btn-primary-custom:hover {
+    background-color: #1e40af;
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* ===== فرم‌ها ===== */
+.form-control-custom {
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 12px 15px;
+    font-size: 0.95rem;
+    transition: all 0.3s;
+}
+
+.form-control-custom:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    outline: none;
+}
+
+/* ===== پروفایل ===== */
+.profile-card {
+    background: #fff;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.06);
+}
+
+.profile-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #fff;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* ===== Footer ===== */
+.footer-custom {
+    background: #1f2937;
+    color: #d1d5db;
+    padding: 50px 0 20px;
+    margin-top: 80px;
+}
+
+.footer-custom h5 {
+    color: #fff;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.footer-custom a {
+    color: #d1d5db;
+}
+
+.footer-custom a:hover {
+    color: #2563eb;
+}
+
+/* ===== Messages ===== */
+.alert-custom {
+    border-radius: 8px;
+    padding: 12px 20px;
+    margin-bottom: 20px;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+    .hero-section h1 {
+        font-size: 2rem;
+    }
+    .hero-section {
+        padding: 60px 0 50px;
+    }
+}
+/* ===== دکمه برگشت به بالا ===== */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    z-index: 1000;
+    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+    transition: all 0.3s;
+}
+
+.back-to-top:hover {
+    background: #1e40af;
+    transform: translateY(-3px);
+}
+
+/* ===== Toast Styles ===== */
+.toast {
+    min-width: 300px;
+    margin-bottom: 10px;
+    transition: opacity 0.5s;
+}
+
+/* ===== Breadcrumb ===== */
+.breadcrumb-custom {
+    background: transparent;
+    padding: 15px 0;
+    margin-bottom: 0;
+}
+
+.breadcrumb-custom .breadcrumb-item a {
+    color: #2563eb;
+    text-decoration: none;
+}
+
+.breadcrumb-custom .breadcrumb-item.active {
+    color: #6b7280;
+}
+
+/* ===== انیمیشن‌های ورود ===== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.post-card {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* ===== اشتراک‌گذاری ===== */
+.share-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.share-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.share-btn:hover {
+    transform: translateY(-3px);
+    color: white;
+}
+
+/* ===== کامنت‌ها ===== */
+.comment-item {
+    border-right: 4px solid #2563eb;
+}
+
+.comment-item:hover {
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* ===== لایک ===== */
+.btn-outline-danger:hover {
+    background-color: #dc3545;
+    color: white;
+}
+
+/* ===== اشتراک‌گذاری ===== */
+.share-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.share-btn.telegram { background: #0088cc; }
+.share-btn.whatsapp { background: #25d366; }
+.share-btn.twitter { background: #1da1f2; }
+.share-btn.linkedin { background: #0077b5; }

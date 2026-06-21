@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}حذف پست - بلاگ من{% endblock %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="profile-card text-center">
+                    <div class="mb-4">
+                        <i class="bi bi-exclamation-triangle bi-4x text-warning"></i>
+                    </div>
+                    <h3 class="mb-3">حذف پست</h3>
+                    <p class="mb-4">
+                        آیا مطمئن هستید که می‌خواهید پست 
+                        <strong>"{{ post.title }}"</strong> 
+                        را حذف کنید؟
+                        <br>
+                        <small class="text-danger">این عملیات قابل بازگشت نیست!</small>
+                    </p>
+
+                    <form method="post" class="d-flex justify-content-center gap-2">
+                        {% csrf_token %}
+                        <a href="{% url 'accounts:profile' %}" class="btn btn-secondary">انصراف</a>
+                        <button type="submit" class="btn btn-danger">
+                            <i class="bi bi-trash"></i> بله، حذف شود
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

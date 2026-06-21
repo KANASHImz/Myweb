@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block title %}ورود - بلاگ من{% endblock %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-5">
+                <div class="profile-card">
+                    <div class="text-center mb-4">
+                        <i class="bi bi-sign-in-alt bi-3x text-primary mb-3"></i>
+                        <h3>ورود به حساب کاربری</h3>
+                    </div>
+
+                    <form method="post">
+                        {% csrf_token %}
+                        
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">ایمیل</label>
+                            {{ form.email }}
+                            {% if form.email.errors %}
+                                <div class="text-danger small">{{ form.email.errors }}</div>
+                            {% endif %}
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">رمز عبور</label>
+                            {{ form.password }}
+                            {% if form.password.errors %}
+                                <div class="text-danger small">{{ form.password.errors }}</div>
+                            {% endif %}
+                        </div>
+
+                        {% if form.non_field_errors %}
+                            <div class="alert alert-danger">
+                                {% for error in form.non_field_errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+
+                        <button type="submit" class="btn btn-primary-custom w-100">
+                            <i class="bi bi-sign-in-alt"></i> ورود
+                        </button>
+                    </form>
+
+                    <p class="text-center mt-3 mb-0">
+                        حساب کاربری ندارید؟ 
+                        <a href="{% url 'accounts:register' %}" class="text-primary fw-bold">ثبت‌نام کنید</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    form input {
+        width: 100%;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        padding: 10px 15px;
+    }
+    form input:focus {
+        border-color: #2563eb;
+        box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+        outline: none;
+    }
+</style>
+{% endblock %}

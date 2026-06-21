@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}درباره من - بلاگ من{% endblock %}
+
+{% block content %}
+<section class="hero-section text-center" style="padding: 60px 0;">
+    <div class="container">
+        <h1>درباره من 👨‍💻</h1>
+        <p class="lead">با من بیشتر آشنا شوید</p>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+        <div class="row g-4 mb-5">
+            <div class="col-md-4">
+                <div class="profile-card text-center">
+                    <i class="fas bi-newspaper bi-3x text-primary mb-3"></i>
+                    <h2 class="fw-bold text-primary">{{ total_posts }}</h2>
+                    <p class="text-muted mb-0">پست منتشر شده</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="profile-card text-center">
+                    <i class="fas bi-folder bi-3x text-primary mb-3"></i>
+                    <h2 class="fw-bold text-primary">{{ total_categories }}</h2>
+                    <p class="text-muted mb-0">دسته‌بندی</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="profile-card text-center">
+                    <i class="fas bi-calendar-check bi-3x text-primary mb-3"></i>
+                    <h2 class="fw-bold text-primary">۱۴۰۵</h2>
+                    <p class="text-muted mb-0">سال شروع</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row align-items-center">
+            <div class="col-md-5 text-center mb-4 mb-md-0">
+                <img src="{% static 'img/me.jpg' %}" alt="mersad" 
+                     class="img-fluid rounded-3 shadow" style="max-width:350px;">
+            </div>
+            <div class="col-md-7">
+                <h2 class="fw-bold mb-3">مرصاد غیاثی</h2>
+                <p class="lead text-muted mb-4">توسعه‌دهنده وب و علاقه‌مند به تکنولوژی</p>
+                <p>
+                    مرصاد غیاثی هستم به وب سایت من خوش آمدید اینجا جاییه که تجربه هامو توش ثبت میکنم و با شما به اشتراک میزارم
+                </p>
+                <p>
+                    علاقه‌مند به برنامه‌نویسی وب، به خصوص با Python و Django هستم 
+                    و همیشه در حال یادگیری تکنولوژی‌های جدید.
+                </p>
+
+                <div class="mt-4">
+                    <h5 class="fw-bold mb-3">مهارت‌ها:</h5>
+                    <span class="badge-category me-2 mb-2">Python</span>
+                    <span class="badge-category me-2 mb-2">Django</span>
+                    <span class="badge-category me-2 mb-2">Database</span>
+                    
+                </div>
+
+                <div class="mt-4">
+                    <h5 class="fw-bold mb-3">ارتباط با من:</h5>
+                    <div class="d-flex gap-3 fs-3">
+                        <a href="mailto:mersadghiasi80@gmail.com" class="text-primary" title="ایمیل">
+                            <i class="fas bi-envelope"></i>
+                        </a>
+                        <a href="tel:09122636527" class="text-primary" title="تلفن">
+                            <i class="fas bi-phone"></i>
+                        </a>
+                        <a href="#" class="text-primary" title="گیت‌هاب">
+                            <i class="fab bi-github"></i>
+                        </a>
+                        <a href="#" class="text-primary" title="لینکدین">
+                            <i class="fab bi-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

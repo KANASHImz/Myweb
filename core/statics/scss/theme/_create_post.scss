@@ -1,0 +1,41 @@
+.page-create-post {
+  background-color: $body-bg;
+  padding: 2rem 0;
+
+  .form-section {
+    background: #fff;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    border-radius: $border-radius-lg;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+  }
+
+  .form-group {
+    margin-bottom: 1rem;
+
+    label {
+      display: block;
+      margin-bottom: 0.4rem;
+      color: $gray-700;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      padding: 0.6rem 0.75rem;
+      border: 1px solid $gray-300;
+      border-radius: $border-radius;
+      font-size: 0.95rem;
+      &:focus {
+        border-color: $primary;
+        outline: none;
+      }
+    }
+  }
+
+  button {
+    margin-top: 1rem;
+  }
+}

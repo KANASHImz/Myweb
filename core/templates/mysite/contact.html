@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+
+{% block title %}تماس با ما - بلاگ من{% endblock %}
+
+{% block content %}
+<section class="hero-section text-center" style="padding: 60px 0;">
+    <div class="container">
+        <h1>تماس با ما 📬</h1>
+        <p class="lead">خوشحال می‌شیم از شما بشنویم</p>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+        <div class="row g-4">
+            <!-- اطلاعات تماس -->
+            <div class="col-md-4">
+                <div class="profile-card h-100">
+                    <h4 class="mb-4">اطلاعات تماس</h4>
+                    
+                    <div class="mb-4">
+                        <div class="d-flex align-items-center mb-2">
+                            <i class="fas bi-map-marker-alt bi-2x text-primary me-3"></i>
+                            <div>
+                                <h6 class="mb-0">آدرس</h6>
+                                <small class="text-muted">تهران، شهریار</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <div class="d-flex align-items-center mb-2">
+                            <i class="fas bi-phone bi-2x text-primary me-3"></i>
+                            <div>
+                                <h6 class="mb-0">تلفن</h6>
+                                <small class="text-muted">۰۹۳۸۱۷۵۹۶۶۰</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <div class="d-flex align-items-center mb-2">
+                            <i class="fas bi-envelope bi-2x text-primary me-3"></i>
+                            <div>
+                                <h6 class="mb-0">ایمیل</h6>
+                                <small class="text-muted">mersadghiasi80@gmail.com</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr>
+                    <h6 class="mb-3">ما را دنبال کنید:</h6>
+                    <div class="d-flex gap-3 fs-4">
+                        <a href="#" class="text-primary"><i class="fab bi-instagram"></i></a>
+                        <a href="#" class="text-primary"><i class="fab bi-telegram"></i></a>
+                        <a href="#" class="text-primary"><i class="fab bi-github"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- فرم تماس -->
+            <div class="col-md-8">
+                <div class="profile-card">
+                    <h4 class="mb-4">ارسال پیام</h4>
+                    
+                    <form method="post">
+                        {% csrf_token %}
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">نام</label>
+                                {{ form.name }}
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">ایمیل</label>
+                                {{ form.email }}
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">موضوع</label>
+                            {{ form.subject }}
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label fw-bold">پیام</label>
+                            {{ form.message }}
+                        </div>
+
+                        <button type="submit" class="btn btn-primary-custom">
+                            <i class="fas bi-paper-plane"></i> ارسال پیام
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    form input, form textarea {
+        width: 100%;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        padding: 10px 15px;
+    }
+    form textarea { min-height: 150px; }
+    form input:focus, form textarea:focus {
+        border-color: #2563eb;
+        box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+        outline: none;
+    }
+</style>
+{% endblock %}

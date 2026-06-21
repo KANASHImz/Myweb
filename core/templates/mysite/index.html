@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}خانه - بلاگ من{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section text-center">
+    <div class="container">
+        <h1>به بلاگ من خوش آمدید 👋</h1>
+        <p class="lead">اینجا می‌تونی تجربیات روزانه‌ات رو با دیگران به اشتراک بذاری</p>
+        <a href="{% url 'blog:blog_home' %}" class="btn btn-light btn-lg mt-3">
+            مشاهده پست‌ها <i class="fas bi-arrow-left"></i>
+        </a>
+    </div>
+</section>
+
+<!-- پست‌های محبوب -->
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">پست‌های محبوب 🔥</h2>
+            <p class="text-muted">پربازدیدترین پست‌های ما</p>
+        </div>
+
+        <div class="row g-4">
+            {% for post in popular_posts %}
+            <div class="col-md-4">
+                <div class="post-card">
+                    {% if post.image %}
+                        <img src="{{ post.image.url }}" alt="{{ post.title }}">
+                    {% else %}
+                        <img src="https://via.placeholder.com/400x220?text=No+Image" alt="default">
+                    {% endif %}
+                    <div class="card-body">
+                        <div class="post-meta">
+                            <i class="far bi-eye"></i> {{ post.views }} بازدید
+                            {% if post.category %}
+                                <span class="badge-category me-2">{{ post.category.name }}</span>
+                            {% endif %}
+                        </div>
+                        <h5 class="post-title">{{ post.title }}</h5>
+                        <p class="post-excerpt">{{ post.content|truncatechars:100 }}</p>
+                        <a href="{% url 'blog:post_detail' post.id %}" class="btn btn-primary-custom mt-2">
+                            ادامه مطلب
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center">
+                <p class="text-muted">هنوز پستی منتشر نشده است.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
